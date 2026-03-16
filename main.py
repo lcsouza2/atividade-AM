@@ -2,6 +2,7 @@ from rich.console import Console
 from rich.panel import Panel
 from DRE import DREData
 from BP import BPData
+from indicadores import Indicadores
 
 console = Console()
 
@@ -11,6 +12,7 @@ def main() -> None:
 
     dre_data = DREData()
     bp_data = BPData(dre_data)
+    indicadores = Indicadores(dre_data)
 
     total_deducoes = (
         dre_data.vendas_canceladas
@@ -51,6 +53,19 @@ def main() -> None:
     [yellow]Total de Passivos + Capital Social:[/yellow] {bp_data.total_passivos + dre_data.capital_social}
     [bold blue]Balanco (Ativos - (Passivos + Capital Social + Lucro da DRE)):[/bold blue] {bp_data.balanco}
     [bold green]{bp_data.status}[/bold green]"""
+        )
+    )
+
+    console.print(
+        Panel.fit(
+            f"""[bold green]Indicadores Financeiros[/bold green]
+    [yellow]Liquidez Corrente:[/yellow] {indicadores.liquidez_corrente}
+    [yellow]Liquidez Seca:[/yellow] {indicadores.liquidez_seca}
+    [yellow]Endividamento Geral:[/yellow] {indicadores.endividamento_geral}
+    [yellow]Margem Bruta:[/yellow] {indicadores.margem_bruta}
+    [yellow]Margem Operacional:[/yellow] {indicadores.margem_operacional}
+    [yellow]Margem Liquida:[/yellow] {indicadores.margem_liquida}
+    [yellow]Giro do Ativo Total:[/yellow] {indicadores.giro_ativo_total}"""
         )
     )
 

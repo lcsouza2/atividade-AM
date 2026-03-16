@@ -1,7 +1,7 @@
 from rich.console import Console
 from rich.panel import Panel
 import questionary as qs
-from DRE import DREData
+from DRE import DREData, ler_valor
 
 console = Console()
 
@@ -67,7 +67,9 @@ class BPData:
         self.lista_passivos = []
 
         opcao = None
+        self.estoques = ler_valor("Digite o valor dos Estoques:")
         while opcao != "Sair e Calcular":
+
             opcao = qs.select(
                 "Escolha uma opção:",
                 choices=["Adicionar Ativo", "Adicionar Passivo", "Sair e Calcular"],
