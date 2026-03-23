@@ -68,6 +68,8 @@ class BPData:
 
         opcao = None
         self.estoques = ler_valor("Digite o valor dos Estoques:")
+        self.clientes = ler_valor("Digite o valor de Clientes (Contas a Receber):")
+        self.fornecedores = ler_valor("Digite o valor de Fornecedores (Contas a Pagar):")
         while opcao != "Sair e Calcular":
 
             opcao = qs.select(
